@@ -186,7 +186,7 @@ const ChatWidget = () => {
           )}
 
           <div className="max-w-4xl mx-auto w-full px-4 py-6 space-y-3">
-          {messages.map((message, index) => (
+          {messages.map((message) => (
             <div
               key={message.id}
               className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
