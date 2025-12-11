@@ -147,23 +147,24 @@ const ChatWidget = () => {
       </div>
 
       {/* Messages Area - Scrollable between header and input */}
-      <div className="flex-1 overflow-y-auto px-4 py-6 bg-[#efeae2] bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%23d4d4d4%22 fill-opacity=%220.4%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" style={{ paddingTop: '72px', paddingBottom: '120px' }}>
-        {messages.length === 0 && !currentResponse && (
-          <div className="flex items-center justify-center h-full">
-            <div className="text-center max-w-md px-4">
-              <div className="w-20 h-20 bg-[#075e54] rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
+      <div className="flex-1 overflow-y-auto bg-[#efeae2] bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%23d4d4d4%22 fill-opacity=%220.4%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" style={{ paddingTop: '72px', paddingBottom: '120px' }}>
+        <div className="min-h-full flex flex-col">
+          {messages.length === 0 && !currentResponse && (
+            <div className="flex-1 flex items-center justify-center px-4 py-6">
+              <div className="text-center max-w-md w-full">
+                <div className="w-20 h-20 bg-[#075e54] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                </div>
+                <h2 className="text-2xl font-semibold text-gray-700 mb-2">Welcome! 👋</h2>
+                <p className="text-gray-600 mb-4">I'm your Salon Assistant. Ask me anything about our services, pricing, or bookings!</p>
+                <p className="text-sm text-gray-500">You can ask in English or Roman Urdu</p>
               </div>
-              <h2 className="text-2xl font-semibold text-gray-700 mb-2">Welcome! 👋</h2>
-              <p className="text-gray-600 mb-4">I'm your Salon Assistant. Ask me anything about our services, pricing, or bookings!</p>
-              <p className="text-sm text-gray-500">You can ask in English or Roman Urdu</p>
             </div>
-          </div>
-        )}
+          )}
 
-        <div className="max-w-4xl mx-auto space-y-2">
+          <div className="max-w-4xl mx-auto w-full px-4 py-6 space-y-2">
           {messages.map((message) => (
             <div
               key={message.id}
@@ -229,6 +230,7 @@ const ChatWidget = () => {
           )}
 
           <div ref={messagesEndRef} />
+          </div>
         </div>
       </div>
 
