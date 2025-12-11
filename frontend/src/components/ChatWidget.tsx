@@ -120,9 +120,9 @@ const ChatWidget = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-[#f0f2f5]">
-      {/* Header - WhatsApp style */}
-      <div className="bg-[#075e54] text-white px-4 py-3 flex items-center justify-between shadow-md z-10">
+    <div className="h-screen w-screen flex flex-col bg-[#f0f2f5] overflow-hidden">
+      {/* Header - Fixed at top */}
+      <div className="fixed top-0 left-0 right-0 bg-[#075e54] text-white px-4 py-3 flex items-center justify-between shadow-md z-20">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,8 +146,8 @@ const ChatWidget = () => {
         </button>
       </div>
 
-      {/* Messages Area - Full height */}
-      <div className="flex-1 overflow-y-auto px-4 py-6 bg-[#efeae2] bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%23d4d4d4%22 fill-opacity=%220.4%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]">
+      {/* Messages Area - Scrollable between header and input */}
+      <div className="flex-1 overflow-y-auto px-4 py-6 bg-[#efeae2] bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%23d4d4d4%22 fill-opacity=%220.4%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" style={{ paddingTop: '72px', paddingBottom: '120px' }}>
         {messages.length === 0 && !currentResponse && (
           <div className="flex items-center justify-center h-full">
             <div className="text-center max-w-md px-4">
@@ -232,12 +232,12 @@ const ChatWidget = () => {
         </div>
       </div>
 
-      {/* Input Area - WhatsApp style */}
-      <div className="bg-[#f0f2f5] px-4 py-3 border-t border-gray-300">
+      {/* Input Area - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-[#f0f2f5] px-4 py-3 border-t border-gray-300 z-20 shadow-lg">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-end gap-2 bg-white rounded-3xl px-4 py-2 shadow-sm border border-gray-200">
             <button
-              className="p-2 text-gray-500 hover:text-gray-700 transition-colors"
+              className="p-2 text-gray-500 hover:text-gray-700 transition-colors flex-shrink-0"
               aria-label="Attach"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -261,7 +261,7 @@ const ChatWidget = () => {
               <button
                 onClick={handleSend}
                 disabled={isLoading}
-                className="p-2 bg-[#075e54] text-white rounded-full hover:bg-[#064e46] disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                className="p-2 bg-[#075e54] text-white rounded-full hover:bg-[#064e46] disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex-shrink-0"
                 aria-label="Send message"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -270,7 +270,7 @@ const ChatWidget = () => {
               </button>
             ) : (
               <button
-                className="p-2 text-gray-500 hover:text-gray-700 transition-colors"
+                className="p-2 text-gray-500 hover:text-gray-700 transition-colors flex-shrink-0"
                 aria-label="Emoji"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
