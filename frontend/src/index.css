@@ -71,3 +71,11 @@ body {
   animation: fade-in 0.3s ease-out;
 }
 
+/* Fix for mobile scroll issues - ensure proper scroll behavior */
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  /* Ensure content is fully scrollable */
+  scroll-padding-top: 0;
+}
+
