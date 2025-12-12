@@ -165,13 +165,15 @@ const ChatWidget = () => {
           paddingBottom: '140px',
           paddingLeft: 'env(safe-area-inset-left)',
           paddingRight: 'env(safe-area-inset-right)',
-          minHeight: 'calc(100vh - 72px - 140px)'
+          minHeight: 'calc(100vh - 72px - 140px)',
+          WebkitOverflowScrolling: 'touch',
+          scrollBehavior: 'smooth'
         }}
       >
+        {/* Spacer div for fixed header - ensures first message is fully visible when scrolled to top */}
+        <div style={{ height: '72px', width: '100%', flexShrink: 0 }} aria-hidden="true" />
+        
         <div className="min-h-full flex flex-col">
-          {/* Spacer for fixed header - ensures first message is fully visible when scrolled to top */}
-          <div style={{ height: '72px', flexShrink: 0 }} />
-          
           {messages.length === 0 && !currentResponse && (
             <div className="flex-1 flex items-center justify-center px-4 py-6">
               <div className="text-center max-w-md w-full">
@@ -187,7 +189,7 @@ const ChatWidget = () => {
             </div>
           )}
 
-          <div className="max-w-4xl mx-auto w-full px-4 py-6 space-y-3">
+          <div className="max-w-4xl mx-auto w-full px-4 pt-6 pb-6 space-y-3">
           {messages.map((message) => (
             <div
               key={message.id}
