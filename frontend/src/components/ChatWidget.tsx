@@ -3,14 +3,14 @@ import { useChatStore } from '../store/chatStore';
 import { sendMessage } from '../services/chatApi';
 
 const ChatWidget = () => {
-  const { 
-    messages, 
-    sessionId, 
-    isLoading, 
-    addMessage, 
-    setSessionId, 
+  const {
+    messages,
+    sessionId,
+    isLoading,
+    addMessage,
+    setSessionId,
     setLoading,
-    clearMessages 
+    clearMessages
   } = useChatStore();
 
   const [inputValue, setInputValue] = useState('');
@@ -55,12 +55,12 @@ const ChatWidget = () => {
 
     const userMessage = inputValue.trim();
     setInputValue('');
-    
+
     // Reset textarea height
     if (inputRef.current) {
       inputRef.current.style.height = 'auto';
     }
-    
+
     // Add user message
     addMessage({
       role: 'user',
@@ -159,9 +159,11 @@ const ChatWidget = () => {
       </div>
 
       {/* Messages Area - Scrollable between header and input */}
-      <div 
-        className="flex-1 overflow-y-auto bg-[#efeae2] bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%23d4d4d4%22 fill-opacity=%220.4%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" 
-        style={{ 
+      {/* Messages Area - Scrollable between header and input */}
+      <div
+        className="flex-1 overflow-y-auto bg-[#efeae2] bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%23d4d4d4%22 fill-opacity=%220.4%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"
+        style={{
+          paddingTop: '88px',
           paddingBottom: '140px',
           paddingLeft: 'env(safe-area-inset-left)',
           paddingRight: 'env(safe-area-inset-right)',
@@ -172,7 +174,7 @@ const ChatWidget = () => {
       >
         {/* Spacer div for fixed header - ensures first message is fully visible when scrolled to top */}
         <div style={{ height: '72px', width: '100%', flexShrink: 0 }} aria-hidden="true" />
-        
+
         <div className="min-h-full flex flex-col">
           {messages.length === 0 && !currentResponse && (
             <div className="flex-1 flex items-center justify-center px-4 py-6">
@@ -190,77 +192,76 @@ const ChatWidget = () => {
           )}
 
           <div className="max-w-4xl mx-auto w-full px-4 pt-6 pb-6 space-y-3">
-          {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
-            >
+            {messages.map((message) => (
               <div
-                className={`max-w-[75%] sm:max-w-[65%] md:max-w-[55%] rounded-lg px-4 py-2 shadow-sm ${
-                  message.role === 'user'
-                    ? 'bg-[#dcf8c6] rounded-tr-none' // WhatsApp green for user
-                    : 'bg-white rounded-tl-none' // White for bot
-                }`}
-                style={{
-                  boxShadow: message.role === 'user' 
-                    ? '0 1px 2px rgba(0,0,0,0.1)' 
-                    : '0 1px 2px rgba(0,0,0,0.1)'
-                }}
+                key={message.id}
+                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
               >
-                <p className="text-sm text-gray-800 whitespace-pre-wrap break-words leading-relaxed">
-                  {message.content}
-                </p>
-                <div className={`flex items-center justify-end gap-1 mt-1 ${message.role === 'user' ? 'text-[#667781]' : 'text-gray-500'}`}>
-                  <span className="text-[10px]">
-                    {message.timestamp.toLocaleTimeString([], {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
-                  </span>
-                  {message.role === 'user' && (
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
-                    </svg>
-                  )}
+                <div
+                  className={`max-w-[75%] sm:max-w-[65%] md:max-w-[55%] rounded-lg px-4 py-2 shadow-sm ${message.role === 'user'
+                      ? 'bg-[#dcf8c6] rounded-tr-none' // WhatsApp green for user
+                      : 'bg-white rounded-tl-none' // White for bot
+                    }`}
+                  style={{
+                    boxShadow: message.role === 'user'
+                      ? '0 1px 2px rgba(0,0,0,0.1)'
+                      : '0 1px 2px rgba(0,0,0,0.1)'
+                  }}
+                >
+                  <p className="text-sm text-gray-800 whitespace-pre-wrap break-words leading-relaxed">
+                    {message.content}
+                  </p>
+                  <div className={`flex items-center justify-end gap-1 mt-1 ${message.role === 'user' ? 'text-[#667781]' : 'text-gray-500'}`}>
+                    <span className="text-[10px]">
+                      {message.timestamp.toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </span>
+                    {message.role === 'user' && (
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                      </svg>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
 
-          {/* Current streaming response */}
-          {currentResponse && (
-            <div className="flex justify-start animate-fade-in">
-              <div className="max-w-[75%] sm:max-w-[65%] md:max-w-[55%] bg-white rounded-lg rounded-tl-none px-4 py-2 shadow-sm">
-                <p className="text-sm text-gray-800 whitespace-pre-wrap break-words leading-relaxed">
-                  {currentResponse}
-                  {isLoading && (
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full animate-pulse ml-1" />
-                  )}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* Typing indicator */}
-          {isLoading && !currentResponse && (
-            <div className="flex justify-start animate-fade-in">
-              <div className="bg-white rounded-lg rounded-tl-none px-4 py-3 shadow-sm">
-                <div className="flex gap-1">
-                  <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+            {/* Current streaming response */}
+            {currentResponse && (
+              <div className="flex justify-start animate-fade-in">
+                <div className="max-w-[75%] sm:max-w-[65%] md:max-w-[55%] bg-white rounded-lg rounded-tl-none px-4 py-2 shadow-sm">
+                  <p className="text-sm text-gray-800 whitespace-pre-wrap break-words leading-relaxed">
+                    {currentResponse}
+                    {isLoading && (
+                      <span className="inline-block w-2 h-2 bg-gray-400 rounded-full animate-pulse ml-1" />
+                    )}
+                  </p>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          <div ref={messagesEndRef} style={{ minHeight: '20px' }} />
+            {/* Typing indicator */}
+            {isLoading && !currentResponse && (
+              <div className="flex justify-start animate-fade-in">
+                <div className="bg-white rounded-lg rounded-tl-none px-4 py-3 shadow-sm">
+                  <div className="flex gap-1">
+                    <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div ref={messagesEndRef} style={{ minHeight: '20px' }} />
           </div>
         </div>
       </div>
 
       {/* Input Area - Fixed at bottom */}
-      <div 
+      <div
         className="fixed bottom-0 left-0 right-0 bg-[#f0f2f5] px-4 py-3 border-t border-gray-300 z-20 shadow-lg"
         style={{
           paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))',
@@ -278,7 +279,7 @@ const ChatWidget = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
               </svg>
             </button>
-            
+
             <textarea
               ref={inputRef}
               value={inputValue}
@@ -290,7 +291,7 @@ const ChatWidget = () => {
               className="flex-1 resize-none border-none outline-none text-sm text-gray-800 placeholder-gray-400 bg-transparent py-2 max-h-[200px] overflow-y-auto"
               style={{ fontFamily: 'inherit' }}
             />
-            
+
             {inputValue.trim() ? (
               <button
                 onClick={handleSend}
